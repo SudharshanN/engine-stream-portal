@@ -1,22 +1,16 @@
-<!-- <header fxLayoutAlign="space-between center">
-    <div class="brand">ST Engineering</div>
-    <div fxLayout="row" fxLayoutGap="20px">
-        <a class="app-nav" routerLink="/login">Login</a>
-    </div>
-</header> -->
-
-<header>
-    <mat-toolbar class="eui-color">
-        <button mat-icon-button aria-label="Example icon-button with menu icon" >
+<mat-toolbar class="eui-color">
+    <div>
+        <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
         </button>
-        <img class="brand-logo" [src]="imageSrc" [alt]="imageAlt" routerLink="/">
-        <span class="spacer"></span>
+    </div>
+    <img class="brand-logo" [src]="imageSrc" [alt]="imageAlt" routerLink="/">
+    <div fxFlex fxLayout fxLayoutAlign="end">
         <button mat-icon-button aria-label="Example icon button with a home icon" routerLink="/">
             <mat-icon>home</mat-icon>
         </button>
         <button mat-icon-button aria-label="Example icon-button with share icon" routerLink="/login">
             <mat-icon>account_circle</mat-icon>
         </button>
-    </mat-toolbar>
-</header>
+    </div>    
+</mat-toolbar>

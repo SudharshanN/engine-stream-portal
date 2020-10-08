@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'iams-header',
@@ -8,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   imageSrc = 'assets/images/st-engineering.png';
   imageAlt = 'ST ENGINEERING';
+  @Output() public sidenavToggle = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
+  }
 }

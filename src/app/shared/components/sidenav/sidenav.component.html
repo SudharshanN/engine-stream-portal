@@ -1,14 +1,18 @@
-<div flexLayout="row">
-    <div class="nav-menu" routerLink="/">
-        <p class="nav-item" >Inv DB</p>
-    </div>
-    <div class="nav-menu" routerLink="/surplus">
-        <p class="nav-item" >Surplus Inv</p>
-    </div>
-    <div class="nav-menu" routerLink="/ownedParts">
-        <p class="nav-item" >Customer Owned</p>
-    </div>
-    <div class="nav-menu" routerLink="/scrap">
-        <p class="nav-item" >Scrap Module</p>
-    </div>    
-</div>
+<mat-nav-list>
+    <a mat-list-item routerLink="/" (click)="onSidenavClose()">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">INVENTORY DB</span>
+    </a>
+    <a mat-list-item routerLink="/surplus" (click)="onSidenavClose()">
+        <mat-icon>assignment_ind</mat-icon>
+        <span class="nav-caption">SURPLUS INVENTORY</span>   
+    </a>
+    <a mat-list-item routerLink="/ownedParts" (click)="onSidenavClose()">
+        <mat-icon>account_balance</mat-icon>
+        <span class="nav-caption">CUSTOMER OWNED PARTS</span>
+    </a>
+    <a mat-list-item routerLink="/scrap" (click)="onSidenavClose()">
+        <mat-icon>account_balance</mat-icon>
+        <span class="nav-caption">SCRAP MODULES</span>
+    </a>
+</mat-nav-list>

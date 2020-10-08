@@ -3,15 +3,15 @@
     flex-direction: column;
     height: 100%;
 }
-  
-.content {
-    padding: 20px;
+
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+    height: 100%;
 }
-.test{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: red;
+ 
+mat-sidenav {
+    width: 250px;
+}
+ 
+main {
+    padding: 10px;
 }

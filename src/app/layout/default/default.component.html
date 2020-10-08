@@ -1,18 +1,14 @@
-<iams-header flexLayout="column"></iams-header>
-<div flexLayout="row" fxFlex>
-    <div fxFlex="20">
-        <iams-sidenav fxFlex></iams-sidenav>
-    </div>
-    <div fxFlex="80" class="content">
-        <router-outlet></router-outlet>
-    </div>
-</div>
-<iams-footer flexLayout="column"></iams-footer>
-<!-- <iams-header flexLayout="column"></iams-header>
-<mat-sidenav-container>
-    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+<iams-header flexLayout="column" (sidenavToggle)="sidenav.toggle()"></iams-header>
+<mat-sidenav-container >
+    <mat-sidenav #sidenav role="navigation">
+        <iams-sidenav (sidenavClose)="sidenav.close()"></iams-sidenav>
+    </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet></router-outlet>
+        <main flexLayout="column">
+            <div fxFlex>
+                <router-outlet></router-outlet>
+            </div>
+        </main>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<iams-footer flexLayout="column"></iams-footer> -->
+<iams-footer flexLayout="column"></iams-footer>
