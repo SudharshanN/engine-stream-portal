@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,14 +23,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'iams-inventory-db',
   templateUrl: './inventory-db.component.html',
-  styleUrls: ['./inventory-db.component.scss']
+  styleUrls: ['./inventory-db.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ])]
 })
 export class InventoryDbComponent implements OnInit,AfterViewInit  {
-  displayedColumns = ['sno', 'materialNumber', 'materialDescription', 'engineType', 'totalQty'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns = ['S.No', 'materialNumber', 'materialDescription', 'engineType', 'totalQty', 'Actions'];
+  dataSource: MatTableDataSource<PeriodicElement>;;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor() { }
+  expandedElement: PeriodicElement | null;
+  constructor() {
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+   }
 
   ngOnInit(): void {
   }
@@ -37,7 +47,12 @@ export class InventoryDbComponent implements OnInit,AfterViewInit  {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  doFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

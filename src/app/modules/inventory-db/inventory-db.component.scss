@@ -1,7 +1,10 @@
 table {
-    width: 100%;
+    width: 80%;
 }
 
 th.mat-sort-header-sorted {
     color: black;
+}
+th.mat-header-cell {
+    font-size: 16px !important;
 }
