@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
+import { BatchPartDialogComponent } from './components/batch-part-dialog/batch-part-dialog.component';
 
 
 
@@ -13,7 +14,8 @@ import { MaterialModule } from './material/material.module';
   declarations: [
     HeaderComponent,
     SidenavComponent,
-    FooterComponent
+    FooterComponent,
+    BatchPartDialogComponent
   ],
   imports: [
     CommonModule,
