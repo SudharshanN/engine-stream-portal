@@ -7,4 +7,24 @@ th.mat-sort-header-sorted {
 }
 th.mat-header-cell {
     font-size: 16px !important;
+    font-family: 'Times New Roman', Times, serif ;
 }
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+tr.example-detail-row {
+    height: 0;
+}
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+}
+  
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+.example-element-row td {
+    border-bottom-width: 0;
+}
+  
+  
