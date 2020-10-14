@@ -1,8 +1,11 @@
 table {
-    width: 90%;
+    width: 100%;
+ }
+ .cursor-pointer {
+     cursor: pointer;
  }
 .parts-inv-header {
-    font-size: 16px !important;
+    font-size: 15px !important;
 }
 tr.batch-details-row {
     height: 0;
