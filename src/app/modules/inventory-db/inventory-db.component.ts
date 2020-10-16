@@ -1,9 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { BatchPartDialogComponent } from 'src/app/shared/components/batch-part-dialog/batch-part-dialog.component';
 @Component({
   selector: 'iams-inventory-db',
@@ -54,42 +56,61 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
     actions: 'Actions'
   }
   expandedElement: Material | null;
-
-  constructor(private cd: ChangeDetectorRef, public dialog: MatDialog) {
+  products: any[];
+  constructor(private cd: ChangeDetectorRef, public dialog: MatDialog, private router: Router, private httpClient: HttpClient) {
 
   }
 
   ngOnInit(): void {
-    DATA.forEach(material => {
-      if (material.batches && Array.isArray(material.batches) && material.batches.length) {
-        this.materialData = [...this.materialData, { ...material, batches: new MatTableDataSource(material.batches) }];
-      } else {
-        this.materialData = [...this.materialData, material];
-      }
-    });
-    this.dataSource = new MatTableDataSource(this.materialData);
-    this.dataSource.sort = this.sort;
+    this.httpClient.get("assets/stub/material_stub.json").subscribe((data:[]) =>{
+      console.log(data);
+      this.products = data;
+      this.products.forEach(material => {
+        if (material.batches && Array.isArray(material.batches) && material.batches.length) {
+          this.materialData = [...this.materialData, { ...material, batches: new MatTableDataSource(material.batches) }];
+        } else {
+          this.materialData = [...this.materialData, material];
+        }
+      });
+      this.dataSource = new MatTableDataSource(this.materialData);
+      this.dataSource.sort = this.sort;
+    })
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
   toggleRow(element: Material, event: Event) {
-    element.batches && (element.batches as MatTableDataSource<BatchData>).data.length ? (this.expandedElement = this.expandedElement === element ? null : element) : null;
+    console.log(element);
+    console.log(this.dataSource.data);
+    // element.isExpanded = true;
+    
+    element.batches && (element.batches as MatTableDataSource<BatchData>).data.length ? 
+        (this.expandedElement = this.expandedElement === element ? null : element) : null;
+      this.dataSource.data.forEach((data) => {
+        if(data.materialNumber === element.materialNumber && this.expandedElement === element) {
+          data.isExpanded = true;
+        } else {
+          data.isExpanded = false;
+        }
+      });
     this.cd.detectChanges();
     this.innerTables.
         forEach((table, index) => (table.dataSource as MatTableDataSource<BatchData>).
           sort = this.innerSort.toArray()[index]);
-    console.log(event)
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  getSalesHistory(event: Event) {
+  getSalesHistory(event: Event, element: Material) {
+    // this.router.navigate(['/salesHistory'],{ queryParams: {materialNumber: element.materialNumber}});
+    this.router.navigate(['/salesHistory', element.materialNumber]);
     event.stopPropagation();
   }
-  getPartFullDetails(event: Event) {
+  getPartFullDetails(event: Event, element: BatchData) {
+    console.log(element);
+    this.router.navigate(['/batchDetails', element.materialSerialNumber]);
     event.stopPropagation();
   }
   getPartDetails(element: Material) {
@@ -116,6 +137,7 @@ export interface Material {
   csn?: string;
   condition?: string;
   batches?: BatchData[] | MatTableDataSource<BatchData>;
+  isExpanded?: boolean;
 }
 
 export interface BatchData {
@@ -155,6 +177,7 @@ const DATA: Material[] = [
     tsn: '32DUS2233',
     csn: '112345222',
     condition: 'New',
+    isExpanded: false,
     batches: [
       {
         materialSerialNumber: "WE234RDS",
@@ -183,6 +206,7 @@ const DATA: Material[] = [
     tsn: '32DUS4433',
     csn: '11XSD45222',
     condition: 'New',
+    isExpanded: false,
   },
   {
     materialNumber: "123456C",
@@ -195,6 +219,7 @@ const DATA: Material[] = [
     tsn: '32DUS4433',
     csn: '11XSD45222',
     condition: 'New',
+    isExpanded: false,
     batches: [
       {
         materialSerialNumber: "12WEx",

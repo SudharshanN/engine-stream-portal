@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { SalesHistoryComponent } from 'src/app/modules/sales-history/sales-history.component';
+import { BatchDetailsComponent } from 'src/app/modules/batch-details/batch-details.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
     InventoryDbComponent,
     SurplusInventoryComponent,
     CustomerOwnedPartsComponent,
-    ScrapModuleComponent
+    ScrapModuleComponent,
+    SalesHistoryComponent,
+    BatchDetailsComponent
   ],
   imports: [
     CommonModule,

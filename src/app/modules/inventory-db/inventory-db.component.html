@@ -38,15 +38,13 @@
                     <div *ngIf="column === 'sno' && element.batches?.data.length" (click)="toggleRow(element, $event)">
                         <!-- <mat-cell *matCellDef="let element">  -->
                         <button mat-icon-button color="primary">
-                            <mat-icon id="expand_more"  #expand_more *ngIf="!element.close "  >add</mat-icon>
-                            <mat-icon id="expand_less"  #expand_less *ngIf="element.close ">expand_less</mat-icon>
+                            <mat-icon id="expand_more"  #expand_more *ngIf="!element.isExpanded "  >add</mat-icon>
+                            <mat-icon id="expand_less"  #expand_less *ngIf="element.isExpanded">remove</mat-icon>
                         </button>
                         <!-- </mat-cell> -->
                     </div>
                     <div *ngIf="column === 'actions'">
-                        <button mat-flat-button color="primary">Primary</button>
-                        <!-- <button mat-raised-button color="primary" (click)="getSalesHistory($event)">Sales
-                            History</button> -->
+                        <button mat-flat-button color="primary" (click)="getSalesHistory($event, element)">Sales History</button>
                     </div>
                     <div *ngIf="column != 'Actions'">
                         {{element[column]}}
@@ -89,7 +87,7 @@
                                         </div>
                                         <div *ngIf="innerColumn === 'actions'">
                                             <button mat-raised-button color="primary"
-                                                (click)="getPartFullDetails($event)">View</button>
+                                                (click)="getPartFullDetails($event, element)">View</button>
                                         </div>
                                         <div *ngIf="innerColumn === 'materialSerialNumber'">
                                             <a (click)="getPartDetails(element)">{{element[innerColumn]}}</a>
