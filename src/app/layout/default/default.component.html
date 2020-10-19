@@ -1,11 +1,15 @@
-<iams-header flexLayout="column" (sidenavToggle)="sidenav.toggle()"></iams-header>
+<iams-header flexLayout="column"></iams-header>
 <mat-sidenav-container >
-    <mat-sidenav #sidenav role="navigation">
-        <iams-sidenav (sidenavClose)="sidenav.close()"></iams-sidenav>
+    <mat-sidenav  role="navigation">
     </mat-sidenav>
     <mat-sidenav-content>
         <main flexLayout="column">
-            <div fxFlex>
+       
+
+            <div fxFlex="5%">
+                <iams-sidenav ></iams-sidenav>
+            </div>
+            <div fxFlex="95%">
                 <router-outlet></router-outlet>
             </div>
         </main>
