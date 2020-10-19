@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+    font-family: Lato-Regular;
+    // src: url('../fonts/Lato/Lato-Regular.ttf'); 
+}
 html, body { 
     padding:0;
     margin: 0;
@@ -8,5 +11,13 @@ html, body {
 body { 
     font-family: "Open Sans",sans-serif;
 }
-
+.mat-icon-button {
+    outline: 0 !important;
+}
+.mat-flat-button {
+    outline: 0 !important;
+}
+.mat-raised-button {
+    outline: 0 !important;
+}
 /* Importing Bootstrap SCSS file. */

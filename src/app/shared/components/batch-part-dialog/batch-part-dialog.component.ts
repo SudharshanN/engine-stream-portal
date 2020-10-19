@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./batch-part-dialog.component.scss']
 })
 export class BatchPartDialogComponent implements OnInit {
-
+  reason = "";
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit(): void {
@@ -18,4 +18,5 @@ export class BatchPartDialogComponent implements OnInit {
 export interface DialogData {
   batchNumber: string;
   materialSerialNumber: string;
+  surplusFlag: boolean;
 }

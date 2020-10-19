@@ -4,8 +4,8 @@ import { LoginComponent } from './login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { UesrLoginComponent } from 'src/app/modules/uesr-login/uesr-login.component';
-import { PageNotFoundComponent } from 'src/app/modules/page-not-found/page-not-found.component';
+import { UesrLoginComponent } from 'src/app/pages/uesr-login/uesr-login.component';
+import { PageNotFoundComponent } from 'src/app/pages/page-not-found/page-not-found.component';
 
 
 

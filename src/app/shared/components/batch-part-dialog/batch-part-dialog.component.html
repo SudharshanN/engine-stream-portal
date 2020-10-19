@@ -1,17 +1,39 @@
 <div class="part-dialog">
-    <h2 mat-dialog-title>Batch Part Details</h2>
-    <mat-dialog-content class="mat-typography">
-        <div>
-            <p>
-                {{ data.materialSerialNumber }}
-            </p>
-            <p>
-                This dialog showcases the title, close, content and actions elements.
-            </p>
-        </div>
-        
+    <h2 mat-dialog-title *ngIf="data && data?.surplusFlag">Unflag as Surplus</h2>
+    <h2 mat-dialog-title *ngIf="data && !data?.surplusFlag">Flag as Surplus</h2>
+    <mat-dialog-content class="mat-typography" style="background: whitesmoke;">
+        <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" *ngIf="data" class="p-v-20">
+            <ng-container *ngFor="let batch of data | keyvalue">
+              <div fxFlex="30%" style="padding-bottom: 10px;">
+                  <div fxFlex="45%" class="label">
+                      {{batch.key}}
+                  </div>
+                  <div fxFlex="10%">:</div>
+                  <div fxFlex="45%">
+                    {{batch.value}}
+                  </div>
+              </div>
+            </ng-container>
+            
+
+            
+          </div>
+          <div fxLayout="row wrap" fxLayoutGap="10px" class="p-v-20" fxLayoutAlign="center center">
+            <!-- <mat-form-field> -->
+              <textarea id="w3review" name="w3review" rows="4" cols="50" [(ngModel)]="reason">
+                </textarea>
+            <!-- </mat-form-field> -->
+            <!-- <input type="text" class="form-control" id="name" 
+              required
+              [(ngModel)]="reason" /> -->
+          </div>
+
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Close</button>
+    <mat-dialog-actions fxLayoutAlign="center">
+        <button mat-button mat-dialog-close color="yellow">Cancle</button>
+        <button  mat-raised-button *ngIf="data && data?.surplusFlag && reason != '' " color="green" mat-dialog-close>Unflag as Surplus</button>
+        <button  mat-raised-button *ngIf="data && data?.surplusFlag && reason === '' " disabled mat-dialog-close>Unflag as Surplus</button>
+        <button  mat-raised-button *ngIf="data && !data?.surplusFlag && reason != '' " color="green" mat-dialog-close>Flag as Surplus</button>
+        <button  mat-raised-button *ngIf="data && !data?.surplusFlag && reason === '' " disabled mat-dialog-close>Flag as Surplus</button>
     </mat-dialog-actions>
 </div>

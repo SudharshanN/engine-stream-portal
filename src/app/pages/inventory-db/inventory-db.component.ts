@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { BatchData, Material } from 'src/app/models/material.model';
 import { BatchPartDialogComponent } from 'src/app/shared/components/batch-part-dialog/batch-part-dialog.component';
 @Component({
   selector: 'iams-inventory-db',
@@ -26,7 +27,7 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Material>;
   materialData: Material[] = [];
 
-  columnsToDisplay = ['select', 'sno', 'materialNumber', 'materialDescription', 'engineType', 'plant', 'storageLocation', 'quantity', 'quantityOnHold', 'tsn', 'csn', 'condition', 'actions'];
+  columnsToDisplay = ['select', 'sno', 'materialNumber', 'materialDescription', 'engineType', 'plant', 'storageLocation', 'quantity', 'quantityOnHold', 'actions'];
   columnsToDisplayHeaders = {
     materialNumber: 'Material Number',
     materialDescription: 'Material Description',
@@ -35,18 +36,15 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
     quantity: 'Quantity',
     quantityOnHold: 'Quantity On Hold',
     storageLocation: 'Storage Location',
-    tsn: 'TSN',
-    csn: 'CSN',
-    condition: 'Condition',
     actions: 'Actions'
   };
   innerDisplayedColumns = [
-    'select', 'materialSerialNumber', 'batchNumber', 'qiBatchNumber', 'plant', 'storageLocation', 'ageByDay', 'quantity', 'quantityOnHold', 'surplusFlag', 'actions'
+    'select', 'materialSerialNumber', 'batchNo', 'qiBatchNo', 'plant', 'storageLocation', 'ageByDay', 'quantity', 'quantityOnHold', 'surplusFlag', 'actions'
   ];
   outerColumnsHeaders = {
     materialSerialNumber: 'Material Serial Number',
-    batchNumber: 'Batch Number',
-    qiBatchNumber: 'Qi Batch Number',
+    batchNo: 'Batch No',
+    qiBatchNo: 'Qi Batch No',
     plant: 'Plant',
     quantity: 'Quantity',
     quantityOnHold: 'Quantity On Hold',
@@ -62,7 +60,10 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.httpClient.get("assets/stub/material_stub.json").subscribe((data:[]) =>{
+    
+  }
+  ngAfterViewInit() {
+    this.httpClient.get("assets/stub/material_stub.json").subscribe((data:Material[]) =>{
       console.log(data);
       this.products = data;
       this.products.forEach(material => {
@@ -74,11 +75,8 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
       });
       this.dataSource = new MatTableDataSource(this.materialData);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     })
-  }
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
   toggleRow(element: Material, event: Event) {
     console.log(element);
@@ -125,112 +123,3 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
   }
 }
 
-export interface Material {
-  materialNumber: string;
-  materialDescription: string;
-  engineType?: string;
-  plant?: string;
-  storageLocation?: string;
-  quantity?: number;
-  quantityOnHold?: number;
-  tsn?: string,
-  csn?: string;
-  condition?: string;
-  batches?: BatchData[] | MatTableDataSource<BatchData>;
-  isExpanded?: boolean;
-}
-
-export interface BatchData {
-  materialSerialNumber: string;
-  batchNumber: string;
-  qiBatchNumber: string;
-  plant?: string;
-  storageLocation?: string;
-  ageByDay?: string;
-  quantity?: number;
-  quantityOnHold?: number;
-  surplusflag?: boolean;
-}
-
-export interface UserDataSource {
-  materialNumber: string;
-  materialDescription: string;
-  engineType: string;
-  plant?: string;
-  storageLocation?: string;
-  quantity?: number;
-  quantityOnHold?: number;
-  tsn?: string,
-  csn?: string;
-  condition?: string;
-  batches?: MatTableDataSource<BatchData>;
-}
-const DATA: Material[] = [
-  {
-    materialNumber: "123456A",
-    materialDescription: "# HPC FRONT SHAFT",
-    engineType: "E-CFM56-7",
-    plant: 'Test',
-    storageLocation: 'India',
-    quantity: 5,
-    quantityOnHold: 2,
-    tsn: '32DUS2233',
-    csn: '112345222',
-    condition: 'New',
-    isExpanded: false,
-    batches: [
-      {
-        materialSerialNumber: "WE234RDS",
-        batchNumber: "78542",
-        qiBatchNumber: "#RE10",
-        plant: 'Test4',
-        storageLocation: 'India'
-      },
-      {
-        materialSerialNumber: "432WQA",
-        batchNumber: "78554",
-        qiBatchNumber: "# WE123",
-        plant: 'test2',
-        storageLocation: 'India'
-      }
-    ]
-  },
-  {
-    materialNumber: "123456B",
-    materialDescription: "# STG 1-2 SPOOL",
-    engineType: "E-CFM56-7",
-    plant: 'Test1',
-    storageLocation: 'US',
-    quantity: 15,
-    quantityOnHold: 2,
-    tsn: '32DUS4433',
-    csn: '11XSD45222',
-    condition: 'New',
-    isExpanded: false,
-  },
-  {
-    materialNumber: "123456C",
-    materialDescription: "# HPT FRONT SHAFT",
-    engineType: "E-CFM56-7",
-    plant: 'Test3',
-    storageLocation: 'EU',
-    quantity: 10,
-    quantityOnHold: 5,
-    tsn: '32DUS4433',
-    csn: '11XSD45222',
-    condition: 'New',
-    isExpanded: false,
-    batches: [
-      {
-        materialSerialNumber: "12WEx",
-        batchNumber: "23547",
-        qiBatchNumber: "#023"
-      },
-      {
-        materialSerialNumber: "AS001",
-        batchNumber: "23451",
-        qiBatchNumber: "#102EW"
-      }
-    ]
-  }
-];

@@ -1,0 +1,65 @@
+<div>
+    <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+        <div style="font-size: 18px; color: #569fec; text-decoration: underline; ">
+            <h1>Sales history:</h1>
+        </div>
+        <div style="float: right;">
+            <button type="button" (click)="backToInventory()" class="btn btn-warning">Back to Parts Inv</button>
+        </div>
+    </div>
+
+    
+    <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start">
+        <div fxFlex="30%" style="padding-bottom: 10px;">
+            <div fxFlex="45%" style="font-size: 18px; color: #569fec;">
+                Material Number
+            </div>
+            <div fxFlex="10%">:</div>
+            <div fxFlex="45%">
+                {{materailNumber}}
+            </div>
+        </div>
+        <div fxFlex="30%" style="padding-bottom: 10px;">
+            <div fxFlex="45%" style="font-size: 18px; color: #569fec;">
+                Engine Type
+            </div>
+            <div fxFlex="10%">:</div>
+            <div fxFlex="45%">
+              E-CFM56-7
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 20px">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="sno">
+          <mat-header-cell *matHeaderCellDef class="sales-his-header"> S.No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.sno}} </mat-cell>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="date">
+          <mat-header-cell *matHeaderCellDef class="sales-his-header"> Date </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="ponumber">
+          <mat-header-cell *matHeaderCellDef class="sales-his-header"> PO Number </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.ponumber}} </mat-cell>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="amount">
+          <mat-header-cell *matHeaderCellDef class="sales-his-header"> Amount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="quantity" >
+            <mat-header-cell *matHeaderCellDef class="sales-his-header"> Quantity </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+          </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

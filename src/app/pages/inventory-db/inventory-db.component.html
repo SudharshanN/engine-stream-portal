@@ -5,8 +5,23 @@
                 <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" #input>
             </mat-form-field>
         </div>
+        <div fxFlex fxLayoutAlign="end">
+            <button type="button" class="btn btn-outline-primary">
+                <span class="material-icons">
+                    description
+                </span>
+                    Export
+            </button>
+        </div>
+
         <div fxFlex fxLayout fxLayoutAlign="end">
-            <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]" showFirstLastButtons>
+            
+            <!-- <button mat-raised-button fxFlex="20%" color="primary">
+                <span class="material-icons">
+                    description
+                    </span>Export
+            </button> -->
+            <mat-paginator [pageSize]="6" [pageSizeOptions]="[2, 4, 6, 10, 20]" showFirstLastButtons>
             </mat-paginator>
         </div>
     </div>
@@ -16,8 +31,8 @@
             <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
                 <div *ngIf="column === 'select'">
                     <th mat-header-cell *matHeaderCellDef>
-                        <mat-checkbox>
-                        </mat-checkbox>
+                        <!-- <mat-checkbox>
+                        </mat-checkbox> -->
                     </th>
                 </div>
                 <div *ngIf="column === 'sno' || column === 'actions' ">
@@ -44,7 +59,8 @@
                         <!-- </mat-cell> -->
                     </div>
                     <div *ngIf="column === 'actions'">
-                        <button mat-flat-button color="primary" (click)="getSalesHistory($event, element)">Sales History</button>
+                        <button type="button"  (click)="getSalesHistory($event, element)" class="btn btn-success">Sales History</button>
+                        <!-- <button mat-flat-button color="primary" (click)="getSalesHistory($event, element)">Sales History</button> -->
                     </div>
                     <div *ngIf="column != 'Actions'">
                         {{element[column]}}
@@ -58,9 +74,9 @@
                     class="no-border-bottom-width">
                     <div class="batch-details" *ngIf="element.batches?.data.length"
                         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                        <div class="inner-table mat-elevation-z8" *ngIf="expandedElement">
+                        <div class="inner-table mat-elevation-z8" *ngIf="expandedElement" style="padding: 10px;">
 
-                            <table #innerTables mat-table #innerSort="matSort" [dataSource]="element.batches" matSort>
+                            <table #innerTables mat-table #innerSort="matSort" [dataSource]="element.batches" matSort class="test2">
                                 <ng-container matColumnDef="{{innerColumn}}"
                                     *ngFor="let innerColumn of innerDisplayedColumns">
                                     <div *ngIf="innerColumn === 'select'">
@@ -86,8 +102,9 @@
                                             </mat-checkbox>
                                         </div>
                                         <div *ngIf="innerColumn === 'actions'">
-                                            <button mat-raised-button color="primary"
-                                                (click)="getPartFullDetails($event, element)">View</button>
+                                            <button type="button" class="btn btn-info" (click)="getPartFullDetails($event, element)">View</button>
+                                            <!-- <button mat-raised-button color="primary" class="btn-batch-view"
+                                                (click)="getPartFullDetails($event, element)">View</button> -->
                                         </div>
                                         <div *ngIf="innerColumn === 'materialSerialNumber'">
                                             <a (click)="getPartDetails(element)">{{element[innerColumn]}}</a>
@@ -116,5 +133,10 @@
             </tr>
         </table>
     </div>
+    <div fxLayoutGap="20px" fxLayoutAlign="end" style="padding: 20px;">
+        <button mat-raised-button disabled>Raise Quotation</button>
+        <!-- <button mat-raised-button color="green">Raise Quotation</button> -->
+    </div>
+
 
 </div>

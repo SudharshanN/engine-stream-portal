@@ -6,6 +6,7 @@ table {
  }
 .parts-inv-header {
     font-size: 15px !important;
+    color: white;
 }
 tr.batch-details-row {
     height: 0;
@@ -27,8 +28,22 @@ tr.batch-details-element-row:not(.batch-expanded-row):active {
     display: flex;
 }
 
-
 .inner-table {
     width: 100%;
 }
-  
+.mat-sort-header-container {
+    color: white !important;
+}
+.mat-header-row {
+    background: #6C7AE0;
+}
+.btn-batch-view {
+    background: rebeccapurple;
+}
+.mat-header-cell{
+    color: white;
+}
+.mat-green{
+    background-color:#4A9D45;
+    color:#FFFFFF;
+}

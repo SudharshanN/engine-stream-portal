@@ -7,6 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { BatchPartDialogComponent } from './components/batch-part-dialog/batch-part-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,9 @@ import { BatchPartDialogComponent } from './components/batch-part-dialog/batch-p
     CommonModule,
     FlexLayoutModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,

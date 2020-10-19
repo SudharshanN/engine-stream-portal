@@ -1,8 +1,8 @@
-<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" *ngIf="batchDetails" class="p-v-20">
+<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" *ngIf="batchDetails" class="p-v-20 p-20">
   <ng-container *ngFor="let batch of batchDetails | keyvalue">
-    <div fxFlex="30%">
+    <div fxFlex="30%" style="padding-bottom: 15px;">
         <div fxFlex="45%" class="label">
-            {{batch.key}}
+          {{label_batch[batch.key]}}
         </div>
         <div fxFlex="10%">:</div>
         <div fxFlex="45%">
@@ -12,7 +12,8 @@
   </ng-container>
 </div>
 <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-end">
-  <button  mat-raised-button color="primary">Flag as Surplus</button>
+  <button *ngIf="batchDetails && batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="primary">Flag as Surplus</button>
+  <button *ngIf="batchDetails && !batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="primary">Unflag as Surplus</button>
   <button  mat-raised-button color="green">Raise Quotation</button>
   <button  mat-raised-button color="grey">Email</button>
   <button  mat-raised-button color="secondary">Technical Document</button>
