@@ -6,6 +6,7 @@ table {
  }
 .parts-inv-header {
     font-size: 15px !important;
+    font-weight: bold;
     color: white;
 }
 tr.batch-details-row {
@@ -45,5 +46,19 @@ tr.batch-details-element-row:not(.batch-expanded-row):active {
 }
 .mat-green{
     background-color:#4A9D45;
+    color:#FFFFFF;
+}
+.btn-success {
+    color: #fff;
+    background-color: rgb(25, 78, 130) !important;
+    border-color: rgb(25, 78, 130);
+}
+.btn-success:hover {
+    color: #fff;
+    background-color: rgb(25, 78, 130, 0.9) !important;
+    border-color: rgb(25, 78, 130, 0.9) !important;
+}
+.mat-red{
+    background-color: #C00000;
     color:#FFFFFF;
 }

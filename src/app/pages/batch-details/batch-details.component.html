@@ -1,5 +1,6 @@
-<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" *ngIf="batchDetails" class="p-v-20 p-20">
-  <ng-container *ngFor="let batch of batchDetails | keyvalue">
+<h4>Batch details</h4>
+<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-around" *ngIf="batchDetails" class="p-v-20 p-20">
+  <!-- <ng-container *ngFor="let batch of batchDetails | keyvalue">
     <div fxFlex="30%" style="padding-bottom: 15px;">
         <div fxFlex="45%" class="label">
           {{label_batch[batch.key]}}
@@ -9,8 +10,294 @@
           {{batch.value}}
         </div>
     </div>
-  </ng-container>
+  </ng-container> -->
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Material number
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.materialNumber}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Vendor name
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.vendorName}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      TSN
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.tsn}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Material Serial Number
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.materialSerialNumber}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Reason Purchase Desc
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.reasonPurchaseDescription}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      CSN
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.csn}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Material Description
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.materialDescription}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Last PO Unit Price
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.lastPOUnitPrice}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Condition
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.condition}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Engine Type
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.engineType}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Last 1st Year Issue Qty
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.last1stYearIssueQuantity}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      SurplusFlag
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.surplusFlag}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Biz Unit
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.bizUnit}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Last 2nd Year Issue Qty
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.last2ndYearIssueQuantity}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Age By Day
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.ageByDay}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Batch No
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.batchNo}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Last 3rd Year Issue Qty
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.last3rdYearIssueQuantity}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Age By Month
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.ageByMonth}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Qi Batch No
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.qiBatchNo}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Value In USD
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.valueInUSD}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      UOM
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.uom}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Plant
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.plant}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      NBV In USD
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.nbvInUSD}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Quantity
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.quantity}}
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Storage Location
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.storageLocation}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Total NBV USD
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.totalNBVUSD}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Pant Name
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      Engines Spares
+    </div>
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Storage Bin
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.storageBin}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Last Receipt Date
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.lastReceiptDate}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    
+  </div>
+  <div fxFlex="28%" style="padding-bottom: 15px;">
+    <div fxFlex="45%" class="label">
+      Biz Unit Desc
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="45%">
+      {{batchDetails.bizUnitDescription}}
+    </div>
+  </div>
+  <div fxFlex="36%" style="padding-bottom: 15px;">
+    <div fxFlex="35%" class="label">
+      Material Characteristic
+    </div>
+    <div fxFlex="10%">:</div>
+    <div fxFlex="55%">
+      {{batchDetails.materialCharacteristic}}
+    </div>
+  </div>
+  <div fxFlex="32%" style="padding-bottom: 15px;">
+    
+  </div>
 </div>
+
 <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-end">
   <button *ngIf="batchDetails && batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="primary">Flag as Surplus</button>
   <button *ngIf="batchDetails && !batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="primary">Unflag as Surplus</button>

@@ -11,7 +11,7 @@ export const batch_data_const = {
     "quantity": "Quantity",
     "uom": "UOM",
     "vendorName": "Vendor Name",
-    "reasonPurchaseDescription": "Reason Purchase Description",
+    "reasonPurchaseDescription": "Reason Purchase Desc",
     "valueInUSD": "Value In USD",
     "nbvInUSD": "NBV In USD",
     "totalNBVUSD": "Total NBV USD",
@@ -21,5 +21,6 @@ export const batch_data_const = {
     "materialSerialNumber": "Material Serial Number",
     "materialCharacteristic": "Material Characteristic",
     "surplusFlag": "Surplus Flag",
-    "id": "ID"
+    "id": "ID",
+    "plant": "Plant"
 } 

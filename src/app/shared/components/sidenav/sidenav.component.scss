@@ -1,89 +1,90 @@
 a {
-  text-decoration: none;
-  color: white;
-  &:hover,
-  :active {
-    color: #404040;
-  }
-}
-
-.nav-caption {
-  display: inline-block;
-  padding-left: 6px;
-}
-
-.nav__cont {
-  position: fixed;
-  width: 50px;
-  top: 63px;
-  left: 0;
-  height: 80%;
-  z-index: 100;
-  background-color: #404040;
-  overflow: hidden;
-  transition: width 0.3s ease;
-  cursor: pointer;
-  box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
-  &:hover {
-    width: 220px;
-  }
-
-}
-
-.nav {
-  list-style-type: none;
-  color: white;
-  &:first-child {
-    padding-top: 1.5rem;
-  }
-}
-
-.nav__items {
-  padding-bottom: 1rem;
-
-  a {
-    position: relative;
-    display: block;
-    top: -35px;
-    padding-left: 25px;
-    padding-right: 15px;
-    transition: all 0.3s ease;
-    margin-left: 25px;
-    margin-right: 10px;
     text-decoration: none;
     color: white;
-    font-family: "roboto";
-    font-weight: 100;
-    font-size: 18px;
-    padding-top:2px;
-    padding-bottom:2px;
-    &:after {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border-radius: 2px;
-      background: radial-gradient(
-        circle at 94.02% 88.03%,
-        #C4111B,
-        transparent 100%
-      );
-      opacity: 0;
-      transition: all 0.5s ease;
-      z-index: -10;
+    &:hover,
+    :active {
+      color: #404040;
     }
   }
-  &:hover a:after {
-    opacity: 1;
+  
+  .nav-caption {
+    display: inline-block;
+    padding-left: 6px;
   }
-  mat-icon {
-    position: relative;
-
+  
+  .nav__cont {
+    position: fixed;
+    width: 50px;
+    top: 60px;
+    left: 0;
+    height: 84%;
+    z-index: 100;
+    background-color: #404040;
+    overflow: hidden;
+    transition: width 0.3s ease;
     cursor: pointer;
-
-    font-size: 35px;
-    left: 5px;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, 0.4);
+    &:hover {
+      width: 220px;
+    }
+  
   }
-}
+  
+  .nav {
+    list-style-type: none;
+    color: white;
+    &:first-child {
+      padding-top: 1.5rem;
+    }
+  }
+  
+  .nav__items {
+    padding-bottom: 1rem;
+  
+    a {
+      position: relative;
+      display: block;
+      top: -35px;
+      padding-left: 25px;
+      padding-right: 15px;
+      transition: all 0.3s ease;
+      margin-left: 25px;
+      margin-right: 10px;
+      text-decoration: none;
+      color: white;
+      font-family: "roboto";
+      font-weight: 100;
+      font-size: 18px;
+      padding-top:2px;
+      padding-bottom:2px;
+      &:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 2px;
+        background: radial-gradient(
+          circle at 94.02% 88.03%,
+          #C4111B,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: all 0.5s ease;
+        z-index: -10;
+      }
+    }
+    &:hover a:after {
+      opacity: 1;
+    }
+    mat-icon {
+      position: relative;
+  
+      cursor: pointer;
+  
+      font-size: 35px;
+      left: 5px;
+    }
+  }
+  

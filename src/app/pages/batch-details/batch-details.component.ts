@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,30 +10,45 @@ import { batch_data_const } from 'src/app/constants/batch.const';
   templateUrl: './batch-details.component.html',
   styleUrls: ['./batch-details.component.scss']
 })
-export class BatchDetailsComponent implements OnInit {
+export class BatchDetailsComponent implements OnInit,  AfterViewInit {
   material: any;
   batchDetails: any;
   label_batch = batch_data_const;
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-   const materialSerialNumber = this.route.snapshot.paramMap.get('id');
-   this.httpClient.get('assets/stub/material_stub.json').subscribe((data: []) => {
-     console.log(data);
-     this.material = data;
-     this.material.forEach(m => {
-      m.batches.forEach(element => {
-        if (element.materialSerialNumber === materialSerialNumber){
-          this.batchDetails = element;
-        }
-      });
-    });
-
-    });
+   
+  }
+  ngAfterViewInit() {
+    const materialSerialNumber = this.route.snapshot.paramMap.get('id');
+    this.httpClient.get('assets/stub/material_stub.json').subscribe((data: []) => {
+      this.material = data;
+      let materialNumber = {};
+      let materialDescription = ''
+      this.material.forEach(m => {
+        materialNumber = m;
+       m.batches.forEach(element => {
+         if (element.materialSerialNumber === materialSerialNumber){
+           this.batchDetails = {...element , ...materialNumber};
+         }
+       });
+     });
+     console.log(this.batchDetails)
+     });
   }
   toggleSurplus(batchDetails) {
+    const data = {
+      "materialSerialNumber" : batchDetails.materialSerialNumber,
+      "storageLocation": batchDetails.storageLocation,
+      "batchNo": batchDetails.batchNo,
+      "quantity": batchDetails.quantity,
+      "qiBatchNo": batchDetails.qiBatchNo,
+      "condition": batchDetails.condition,
+      "plant": batchDetails.plant,
+      "surplusFlag": batchDetails.surplusFlag
+    }
     const dialogRef = this.dialog.open(BatchPartDialogComponent, {
-      data: { ...batchDetails }
+      data: { ...data }, height: "490px", width: "800px"
     });
 
     dialogRef.afterClosed().subscribe(result => {

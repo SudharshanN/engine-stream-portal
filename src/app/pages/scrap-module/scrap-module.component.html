@@ -1,1 +1,176 @@
-<p>scrap-module works!</p>
+<div *ngIf="!confirm">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="space-between center ">
+        <div fxFlex fxLayout fxLayoutAlign="start">
+          <mat-form-field appearance="outline" >
+            <input matInput placeholder="Search..." (keyup)="applyFilter($event)" #input>
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex fxLayout fxLayoutAlign="end">
+          <button mat-raised-button color="red">
+            <mat-icon>get_app</mat-icon>
+            CSV download
+          </button>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="50px">
+      <div fxLayoutAlign="center center" style="padding-top: 20px;">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 95%;">
+          <!-- Checkbox Column -->
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef >
+                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="partNo">
+              <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Part No </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.partNo}} </mat-cell>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="desc">
+              <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Description </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="qunatityAvailable">
+              <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Qty Available </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.qunatityAvailable}} </mat-cell>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="condition">
+              <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Condition </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.condition}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tsn" >
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> TSN </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.tsn}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="csn" >
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> CSN </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.csn}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="disposition" >
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Actions </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="element.disposition">
+                        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                            {{season}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+        </mat-table>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="20px">
+      <div fxLayoutAlign="flex-end">
+        <div style="padding: 50px">
+          <button *ngIf="this.selection.selected.length > 0" (click)="goToConfirm()" mat-fab color="red" aria-label="Example icon button with a bookmark icon">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+          <button *ngIf="this.selection.selected.length === 0" disabled  mat-fab color="red" aria-label="Example icon button with a bookmark icon">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="confirm">
+    <div fxLayout="column" fxLayoutGap="20px">
+      <!-- <div fxLayoutAlign="center center"> -->
+        <div fxLayoutAlign="center center">
+          <div class="confirm-banner">
+            <mat-card>
+              <h2>Kindly note the following selection has been made. Kindly confirm if you want to proceed.</h2>
+            </mat-card>
+            <!-- <h2> Kindly note the following selection has been made. Kindly confirm if you want to proceed.</h2> -->
+          </div>
+        </div>
+        <div fxLayoutAlign="center center">
+            <mat-table [dataSource]="selectedDataSource" class="mat-elevation-z8" style="width: 95%;">
+              <!-- Position Column -->
+              <ng-container matColumnDef="partNo">
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Part No </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.partNo}} </mat-cell>
+              </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="desc">
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Description </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="qunatityAvailable">
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Qty Available </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.qunatityAvailable}} </mat-cell>
+              </ng-container>
+            
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="condition">
+                <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Condition </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.condition}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="tsn" >
+                  <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> TSN </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.tsn}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="csn" >
+                  <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> CSN </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.csn}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="disposition" >
+                    <mat-header-cell *matHeaderCellDef class="sales-his-header" class="surplus-inv-header"> Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> 
+                        <mat-radio-group
+                            aria-labelledby="example-radio-group-label"
+                            class="example-radio-group"
+                            [(ngModel)]="element.disposition">
+                            <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                                {{season}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </mat-cell>
+                  </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedConfirmColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedConfirmColumns;"></mat-row>
+            </mat-table>
+        </div>
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button (click)="goBack()" color="red" style="margin-right: 30px;">
+            <mat-icon>undo</mat-icon>
+            Back
+          </button>
+          <button mat-raised-button color="red">
+            <mat-icon>save</mat-icon>
+            Confirm
+          </button>
+        </div>
+  
+      <!-- </div> -->
+    </div>
+  </div>
+  

@@ -27,7 +27,7 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Material>;
   materialData: Material[] = [];
 
-  columnsToDisplay = ['select', 'sno', 'materialNumber', 'materialDescription', 'engineType', 'plant', 'storageLocation', 'quantity', 'quantityOnHold', 'actions'];
+  columnsToDisplay = ['select', 'sno', 'materialNumber', 'materialDescription', 'engineType', 'plant', 'quantity', 'quantityOnHold', 'actions'];
   columnsToDisplayHeaders = {
     materialNumber: 'Material Number',
     materialDescription: 'Material Description',
@@ -35,7 +35,6 @@ export class InventoryDbComponent implements OnInit, AfterViewInit {
     plant: 'Plant',
     quantity: 'Quantity',
     quantityOnHold: 'Quantity On Hold',
-    storageLocation: 'Storage Location',
     actions: 'Actions'
   };
   innerDisplayedColumns = [

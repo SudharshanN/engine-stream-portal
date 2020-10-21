@@ -16,7 +16,12 @@ export class BatchPartDialogComponent implements OnInit {
 }
 
 export interface DialogData {
-  batchNumber: string;
   materialSerialNumber: string;
+  storageLocation: string;
+  batchNo: string;
+  quantity: number;
+  qiBatchNo: string;
+  condition: string;
+  plant: string;
   surplusFlag: boolean;
 }
