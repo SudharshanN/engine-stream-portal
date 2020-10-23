@@ -1,23 +1,25 @@
 
 <div fxLayout="row" fxLayoutAlign="space-between center ">
+    <div fxFlex fxLayout style="margin-right: 20px;">
     <mat-form-field appearance="outline" >
         <input matInput placeholder="Search..." (keyup)="applyFilter($event)" #input>
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-    <div fxFlex fxLayout fxLayoutAlign="end" style="margin-right: 20px;">
-        <button mat-raised-button color="red" style="width : 10em; height: 3.2em;">
+</div>
+    <div fxFlex fxLayout fxLayoutAlign="end">
+        <button mat-raised-button color="red" style="width : 10em; height: 3.2em;" >
             <mat-icon>description</mat-icon>
             Export
         </button>
     </div>
     
-    <mat-paginator [pageSize]="6" [pageSizeOptions]="[2, 4, 6, 10, 20]" showFirstLastButtons>
-    </mat-paginator>
+   
 </div>
 
-<div fxLayout="column" fxLayoutGap="20px">
+<div fxLayout="column">
+    <div class="table-border">
     <div fxLayoutAlign="center center">
-        <table mat-table #outerSort="matSort" [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8"
+        <table mat-table #outerSort="matSort" [dataSource]="dataSource" multiTemplateDataRows class=""
             matSort>
             <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
                 <div *ngIf="column === 'select'">
@@ -50,8 +52,9 @@
                         <!-- </mat-cell> -->
                     </div>
                     <div *ngIf="column === 'actions'">
-                        <button type="button"  (click)="getSalesHistory($event, element)" class="btn btn-success">Sales History</button>
+                        <!-- <button type="button"  (click)="getSalesHistory($event, element)" class="btn btn-success">Sales History</button> -->
                         <!-- <button mat-flat-button color="primary" (click)="getSalesHistory($event, element)">Sales History</button> -->
+                       <span (click)="getSalesHistory($event, element)" class="table-link"> Sales history </span>
                     </div>
                     <div *ngIf="column != 'Actions'">
                         {{element[column]}}
@@ -92,8 +95,9 @@
                                             <mat-checkbox>
                                             </mat-checkbox>
                                         </div>
-                                        <div *ngIf="innerColumn === 'actions'">
-                                            <button type="button" class="btn btn-info" (click)="getPartFullDetails($event, element)">View</button>
+                                        <div *ngIf="innerColumn === 'actions'" >
+                                            <span class="table-link" (click)="getPartFullDetails($event, element)">View</span>
+                                            <!-- <button type="button" class="btn btn-info" (click)="getPartFullDetails($event, element)">View</button> -->
                                             <!-- <button mat-raised-button color="primary" class="btn-batch-view"
                                                 (click)="getPartFullDetails($event, element)">View</button> -->
                                         </div>
@@ -121,9 +125,13 @@
                 <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
             </tr>
         </table>
+        
     </div>
-    <div fxLayoutGap="20px" fxLayoutAlign="end" style="padding: 20px;">
-        <button mat-raised-button disabled>Raise Quotation</button>
+    <mat-paginator [pageSize]="6" [pageSizeOptions]="[2, 4, 6, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+    <div fxLayoutGap="20px" fxLayoutAlign="end" class="p-t-20">
+        <button mat-raised-button disabled color="red-primary">Raise Quotation <mat-icon aria-hidden="false" >pan_tool</mat-icon></button>
         <!-- <button mat-raised-button color="green">Raise Quotation</button> -->
     </div>
 

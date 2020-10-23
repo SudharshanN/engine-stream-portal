@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    
  }
  .cursor-pointer {
      cursor: pointer;
@@ -35,14 +36,12 @@ tr.batch-details-element-row:not(.batch-expanded-row):active {
 .mat-sort-header-container {
     color: white !important;
 }
-.mat-header-row {
-    background: #6C7AE0;
-}
+
 .btn-batch-view {
     background: rebeccapurple;
 }
 .mat-header-cell{
-    color: white;
+    color: #000000;
 }
 .mat-green{
     background-color:#4A9D45;
@@ -59,6 +58,23 @@ tr.batch-details-element-row:not(.batch-expanded-row):active {
     border-color: rgb(25, 78, 130, 0.9) !important;
 }
 .mat-red{
+    background-color: #fff;
+    color:#C00000;
+    border: 1px solid #C00000;
+}
+.mat-red-primary{
     background-color: #C00000;
-    color:#FFFFFF;
+    color:#fff;
+   
+}
+.table-link{
+    font-weight:500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.table-border{
+    border:1px solid #A8A8A8;
+}
+.p-t-20{
+    padding-top:20px;
 }

@@ -1,4 +1,14 @@
-<h4>Batch details</h4>
+<div class="batch-details">
+<div fxLayout="row wrap" class="m-r-10"> 
+  <div fxFlex fxLayout>
+    <h4>Batch details</h4>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" >
+  <button *ngIf="batchDetails && batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="red">Flag as Surplus <mat-icon aria-hidden="false" >flag</mat-icon></button>
+  <button *ngIf="batchDetails && !batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="red">Unflag as Surplus <mat-icon aria-hidden="false" >outlined_flag</mat-icon></button>
+  <button  mat-raised-button color="red">Technical Document <mat-icon aria-hidden="false" >cloud_download</mat-icon></button>
+</div>
+</div>
 <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-around" *ngIf="batchDetails" class="p-v-20 p-20">
   <!-- <ng-container *ngFor="let batch of batchDetails | keyvalue">
     <div fxFlex="30%" style="padding-bottom: 15px;">
@@ -298,11 +308,16 @@
   </div>
 </div>
 
-<div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-end">
-  <button *ngIf="batchDetails && batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="primary">Flag as Surplus</button>
-  <button *ngIf="batchDetails && !batchDetails.surplusFlag" (click)="toggleSurplus(batchDetails)" mat-raised-button color="primary">Unflag as Surplus</button>
-  <button  mat-raised-button color="green">Raise Quotation</button>
-  <button  mat-raised-button color="grey">Email</button>
-  <button  mat-raised-button color="secondary">Technical Document</button>
-  <button  mat-raised-button color="warn">Close</button>
+<div fxLayout="row wrap" fxLayoutGap="10px" class="m-r-10">
+  <div fxFlex fxLayout>
+    <button  mat-raised-button color="black">Close</button>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end">
+  
+  <button  mat-raised-button color="red-primary">Email <mat-icon aria-hidden="false" >email</mat-icon></button>
+  <button  mat-raised-button color="red-primary">Raise Quotation <mat-icon aria-hidden="false" >pan_tool</mat-icon></button>
+
+  
+</div>
+</div>
 </div>

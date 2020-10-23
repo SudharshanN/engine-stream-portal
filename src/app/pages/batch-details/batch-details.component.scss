@@ -1,7 +1,9 @@
 .container {
     padding: 0px !important;
 }
-
+.batch-details{
+    padding-top:10px;
+}
 .key {
     color: red;
 }
@@ -37,5 +39,21 @@
 .row {
     margin-right: 15px;
     margin-left: 15px;
+}
+.m-r-10 button{
+    margin-right:10px;
+}
+.mat-red{
+    background-color: #fff;
+    color:#C00000;
+    border: 1px solid #C00000;
+}
+.mat-red-primary{
+    background-color: #C00000;
+    color:#fff;
+   
+}
+.mat-black{
+    border:1px solid #000;
 }
 
