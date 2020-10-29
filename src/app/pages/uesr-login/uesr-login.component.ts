@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BatchData, Material } from 'src/app/models/material.model';
 
 @Component({
   selector: 'iams-uesr-login',
